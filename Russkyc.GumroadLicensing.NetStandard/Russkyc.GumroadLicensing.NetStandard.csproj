@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Russkyc.GumroadLicensing.NetStandard</Title>
+        <Authors>russkyc</Authors>
+        <Description>Gumroad Licensing Client for .NET Standard</Description>
+        <Copyright>russkyc 2024</Copyright>
+        <PackageTags>gumroad licensing gumroad-licensing api</PackageTags>
+        <PackageIcon>PackageIcon.png</PackageIcon>
+        <PackageProjectUrl>https://github.com/russkyc/gumroad-licensing-netstandard</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/russkyc/gumroad-licensing-netstandard</RepositoryUrl>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CSharp" Version="4.7.0"/>
+        <PackageReference Include="System.Text.Json" Version="8.0.4"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Resource Include="PackageIcon.png" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+</Project>

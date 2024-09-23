@@ -1,8 +1,16 @@
 ﻿
 <h2 align="center">Russkyc.GumroadLicensing.NetStandard</h2>
 
+<p align="center">
+    <img src="https://img.shields.io/nuget/v/Russkyc.GumroadLicensing.NetStandard?color=1f72de" alt="Nuget">
+    <img src="https://img.shields.io/badge/-.NET%20Standard%202.0-blueviolet?color=1f72de&label=NET" alt="">
+    <img src="https://img.shields.io/github/license/russkyc/gumroad-licensing-netstandard">
+    <img src="https://img.shields.io/github/issues/russkyc/gumroad-licensing-netstandard">
+    <img src="https://img.shields.io/nuget/dt/Russkyc.GumroadLicensing.NetStandard">
+</p>
+
 <p style="text-align: justify">
-This is a managed .NET client for license validation using the Gumroad API.
+This is a managed .NET client for license validation using the Gumroad API. Making Gumroad license key validation for .NET easier to implement.
 </p>
 
 ## Setup
@@ -18,11 +26,19 @@ GumroadLicensing.Initialize("<your-product-id>");
 ```
 
 ### Get License Information
-Code:
+
+This can be used to get license information from the gumroad api. Do note the following:
+
+- This does not perform license validation.
+- This does not increment or decrement license uses.
+- Use this only if you need to get information regarding a specific license key.
+
+**Code:**
+
 ```csharp
 var licenseInfo = await GumroadLicensing.GetLicenseInfo("<your-product-license>");
 ```
-Serialized LicenseInfo Object (Class Properties are in PascalCase):
+**Serialized LicenseInfo Object (Class Properties are in PascalCase):**
 ```json
 {
   "Success": true,
@@ -64,7 +80,16 @@ Serialized LicenseInfo Object (Class Properties are in PascalCase):
 
 ### Validate License
 
-Code:
+This can be used to verify licenses using the gumroad api. Do note the following:
+
+- This performs license validation only and does not return any additional information except seats and uses.
+- Validation fails if the license has been refunded.
+- By default, the behavior is set to validate seats and increment the use per validation. If the use is equal to the seats then the validation will fail unless seat validation is disabled.
+- If subscription validation is enabled, it will also check if the subscription has been cancelled or expired.
+- Use this only if you need to check license key validity.
+
+**Code:**
+
 ```csharp
 // Validate License
 // Optional Parameters:
@@ -73,13 +98,14 @@ Code:
 // subscription: default true (validates expiration and cancelation of subscription)
 var validationInfo = await GumroadLicensing.ValidateLicense("<your-product-license>");
 ```
-Serialized validationInfo Object (Class Properties are in PascalCase):
+**Serialized validationInfo Object (Class Properties are in PascalCase):**
+
 ```json
 {
   "Valid": true,
   "ValidationInfo": {
-    "seats": 1,
-    "uses": 2
+    "seats": 2,
+    "uses": 1
   },
   "Message": null
 }

@@ -30,7 +30,7 @@ namespace Russkyc.GumroadLicensing.NetStandard
                     "Url cannot be null. please use the .WithUrl() extension to add a url to the builder.");
             }
 
-            return new string(_baseUrl + _query.ToQueryString());
+            return _baseUrl + _query.ToQueryString();
         }
     }
 }
